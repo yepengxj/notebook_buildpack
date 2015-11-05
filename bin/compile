@@ -5,6 +5,7 @@ CACHE=$2
 
 BASH=$(which bash)
 CONDA_HOME="$1/.conda"
+mkdir -p CONDA_HOME
 CONDA_BIN="$CONDA_HOME/bin"
 MINICONDA_CACHE="$CACHE/miniconda.sh"
 MINICONDA_URI='http://repo.continuum.io/miniconda/Miniconda3-2.0.3-MacOSX-x86_64.sh'
@@ -15,7 +16,7 @@ if [ ! -e $MINICONDA_CACHE ] ; then
 	chmod +x $MINICONDA_CACHE
 fi
 if [ -e $CONDA_HOME ]; then rm -rf $CONDA_HOME; fi
-$MINICONDA_CACHE -b -p $CONDA_HOME &> /dev/null
+$MINICONDA_CACHE -b -p $CONDA_HOME
 
 echo "-----> Installing Dependencies..."
 $CONDA_BIN/conda update --yes --quiet conda
